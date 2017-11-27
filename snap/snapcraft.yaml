@@ -1,0 +1,21 @@
+name: trezorctl
+version: git
+summary: Client side implementation for TREZOR-compatible Bitcoin hardware wallets
+description: |
+  TREZOR is the original hardware wallet.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+apps:
+  trezorctl:
+    environment:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+    command: trezorctl
+
+parts:
+  python-trezor:
+    source: .
+    plugin: python
+    build-packages: [libusb-1.0-0-dev, libudev-dev]
